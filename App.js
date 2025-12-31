@@ -1,53 +1,52 @@
-/* <div id="parent">
-    <div id="child1">
-        <h1>
-
-        </h1>
-         <h1>
-
-        </h1>
-    </div>
-     <div id="child2">
-        <h1>
-
-        </h1>
-         <h1>
-
-        </h1>
-    </div>
-    
-</div> */
-
 import React from "react";
 import { createRoot } from "react-dom/client";
 
-const parent = React.createElement("div", { id: "parent" }, [
-  React.createElement("div", { id: "child1", key: "1" }, [
-    React.createElement(
-      "h1",
-      { id: "heading1", key: 1 },
-      "hello world from React!"
-    ),
-    React.createElement(
-      "h1",
-      { id: "heading-label1", key: 2 },
-      "Sibling heading"
-    ),
-  ]),
-  React.createElement("div", { id: "child2", key: 2 }, [
-    React.createElement(
-      "h1",
-      { id: "heading2", key: 1 },
-      "hello world from React!"
-    ),
-    React.createElement(
-      "h1",
-      { id: "heading-label2", key: 2 },
-      "Sibling headin243223oppakm"
-    ),
-  ]),
-]);
+// React Element
 
-console.log(parent);
+// const heading = React.createElement(
+//   "h1",
+//   { id: "heading" },
+//   "This is react app"
+// );
+
+// JSX code transcpilled before it reaches to JS engine by parcel - babel
+// JSX is not html in js
+// it is html like syntax
+// it is XML like syntax
+// jsx => React.createElement => React elemet => render html
+const jsxHeading = (
+  <h1 className="heading" tabIndex="1">
+    Namaste React using JSX
+  </h1>
+);
+// React Component
+// 1: Class based component - old
+// 2: Functional component - new way of writing component
+// React  functional component
+// A javascript function which return jsx or rect element  is functional component
+const number = 1000;
+const HeadingComponent = () => {
+  return (
+    <div id="container">
+      {Title()}
+      <Title />
+      <h1 className="heading" tabIndex="1">
+        Namaste React Functional Component
+      </h1>
+    </div>
+  );
+};
+
+const Title = () => (
+  <h1 className="head" tabIndex="5">
+    Namste React using JSX
+  </h1>
+);
+
+// const HeadingComponent = () => (
+//   <h1 className="heading" tabIndex="1">
+//     Namaste React using JSX
+//   </h1>
+// );
 const root = createRoot(document.getElementById("root"));
-root.render(parent);
+root.render(<HeadingComponent />);
