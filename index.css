@@ -59,3 +59,20 @@ h4.ratings {
 .res-card {
   padding: 3px;
 }
+.shimmer-container {
+  display: flex;
+}
+.shimmer-card {
+  height: 300px;
+  padding: 3px;
+  background-color: lightgray;
+  border: 1px solid grey;
+}
+.crowsel-item {
+  width: 150px;
+  height: 180px;
+}
+.crowsel-item img {
+  width: 100%;
+  height: 100%;
+}
