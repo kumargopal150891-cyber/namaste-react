@@ -1,5 +1,6 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
+import About from "./components/About";
 
 // React Element
 
@@ -20,5 +21,42 @@ import { createRoot } from "react-dom/client";
 // React  functional component
 // A javascript function which return jsx or rect element  is functional component
 import AppLayout from "./components/AppLayout";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import About from "./components/About";
+import ErrorComponent from "./components/ErrorComponent";
+import Contact from "./components/Contact";
+import Body from "./components/Body";
+import { Cart } from "./components/Cart";
+import RestaurentMenu from "./components/RestaurentMenu";
+const appRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AppLayout />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/about",
+        element: <About />,
+      },
+      {
+        path: "/contact",
+        element: <Contact />,
+      },
+      {
+        path: "/cart",
+        element: <Cart />,
+      },
+      {
+        path: "/restaurent/:id",
+        element: <RestaurentMenu />,
+      },
+    ],
+    errorElement: <ErrorComponent />,
+  },
+]);
+
 const root = createRoot(document.getElementById("root"));
-root.render(<AppLayout />);
+root.render(<RouterProvider router={appRouter} />);
