@@ -80,3 +80,14 @@ h4.ratings {
 h5 {
   font-size: 16px;
 }
+.user-card.card {
+  height: 300px;
+}
+
+.user-card.card img {
+  height: 200px;
+  width: 200px;
+}
+.user-card.card div {
+  display: inline-block;
+}
