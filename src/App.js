@@ -1,6 +1,6 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { createRoot } from "react-dom/client";
-import About from "./components/About";
+// import About from "./components/About";
 
 // React Element
 
@@ -22,12 +22,24 @@ import About from "./components/About";
 // A javascript function which return jsx or rect element  is functional component
 import AppLayout from "./components/AppLayout";
 import { createBrowserRouter, RouterProvider } from "react-router";
-import About from "./components/About";
+// import About from "./components/About";
 import ErrorComponent from "./components/ErrorComponent";
 import Contact from "./components/Contact";
 import Body from "./components/Body";
 import { Cart } from "./components/Cart";
 import RestaurentMenu from "./components/RestaurentMenu";
+// import Grocerry from "./components/Grocerry";
+
+// code chunking
+// dynmic bundling
+// code splitting
+// lazy loading
+// on demand loading
+
+const Grocerry = lazy(() => {
+  return import("./components/Grocerry");
+});
+const About = lazy(() => import("./components/About"));
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -39,7 +51,19 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <About />,
+        element: (
+          <Suspense fallback={<h2>loading...</h2>}>
+            <About />
+          </Suspense>
+        ),
+      },
+      {
+        path: "/groccery",
+        element: (
+          <Suspense fallback={<h2>loading...</h2>}>
+            <Grocerry />{" "}
+          </Suspense>
+        ),
       },
       {
         path: "/contact",

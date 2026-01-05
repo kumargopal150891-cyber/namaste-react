@@ -1,27 +1,17 @@
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router";
+import useResaturentMenu from "../utils/useRestaurentMenu";
 
 const RestaurentMenu = () => {
-  const [resInfo, setResInfo] = useState(null);
-  useEffect(() => {
-    fethMenu();
-  }, []);
+  const [setResInfo] = useState(null);
+  // useEffect(() => {
+  //   fethMenu();
+  // }, []);
   const param = useParams();
-  console.log(param);
   const { id } = param;
-  console.log(id);
+  const resInfo = useResaturentMenu(id);
 
-  const fethMenu = async () => {
-    let url =
-      "https://corsproxy.io/https://namastedev.com/api/v1/listRestaurantMenu/" +
-      id;
-
-    const data = await fetch(url);
-    const menuData = await data.json();
-    console.log(menuData.data);
-    setResInfo(menuData.data);
-  };
   const info = resInfo?.cards[2]?.card?.card?.info;
 
   // const { name, cuisines, costForTwoString } =

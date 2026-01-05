@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router";
+import useOnlineStatus from "../utils/useOnlineStatus";
 const Header = () => {
   let [btnName, setBtnName] = useState("Login");
   // case 1
@@ -27,6 +28,7 @@ const Header = () => {
       "when dependeny array is n ort empty, it will get called on change of passed local state variable"
     );
   }, [btnName]);
+  const onlineLineStatus = useOnlineStatus();
 
   console.log("Component rerendered");
   return (
@@ -37,6 +39,9 @@ const Header = () => {
       <div className="nav-container">
         <ul className="nav-items">
           <li className="nav-item">
+            Online Status: {onlineLineStatus ? "✅" : "🔴"}
+          </li>
+          <li className="nav-item">
             <Link to="/">Home</Link>
           </li>
           <li className="nav-item">
@@ -44,6 +49,9 @@ const Header = () => {
           </li>
           <li className="nav-item">
             <Link to="/contact">Contact Us</Link>
+          </li>
+          <li className="nav-item">
+            <Link to="/groccery">Groccery</Link>
           </li>
           <li className="nav-item">
             <Link to="/cart">Cart</Link>

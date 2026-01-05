@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import WhatsOnYourMind from "./WhatsOnYourMind.js";
 import RestaurentChain from "./RestaurentChain.js";
+import useOnlineStatus from "../utils/useOnlineStatus.js";
 const Body = () => {
   // state varible for reactive approch
   const [listOfRestaurent, setListOfRestaurent] = useState([]);
@@ -32,6 +33,15 @@ const Body = () => {
     setTopResturentChaindata(json?.data?.cards[1]?.card?.card);
   };
   // conditional rendering
+  const onlineStatus = useOnlineStatus();
+  if (onlineStatus === false) {
+    return (
+      <h1>
+        Looks like you are offilne!! Please checkyour internet connection!!
+      </h1>
+    );
+  }
+
   return listOfRestaurent.length === 0 ? (
     <Shimmer />
   ) : (
