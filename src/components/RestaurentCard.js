@@ -7,7 +7,7 @@ const RestaurentCard = (props) => {
     resData?.info;
   const { deliveryTime } = resData?.info?.sla;
   return (
-    <div className="res-card col-md-4 col-lg-2 col-sm-6">
+    <div className="res-card w-300">
       <Link to="restaurent/123456">
         <div className="card">
           <div className="card-body p-0">
@@ -32,6 +32,23 @@ const RestaurentCard = (props) => {
       </Link>
     </div>
   );
+};
+
+// higher order component
+
+// input restaurentcard => promoted restaurent card
+
+export const WithPromotedLAbel = (RestaurentCard) => {
+  return (props) => {
+    return (
+      <div>
+        <label className="absolute bg-black text-white  p-2 rounded-lg z-50">
+          Promoted
+        </label>
+        <RestaurentCard {...props}></RestaurentCard>
+      </div>
+    );
+  };
 };
 
 export default RestaurentCard;

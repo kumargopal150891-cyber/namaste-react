@@ -1,6 +1,7 @@
 .heading {
   font-size: 16px;
 }
+@import "tailwindcss";
 .row {
   --bs-gutter-x: 0rem;
 }
@@ -58,6 +59,7 @@ h4.ratings {
 }
 .res-card {
   padding: 3px;
+  width: 250px;
 }
 .shimmer-container {
   display: flex;
@@ -90,4 +92,10 @@ h5 {
 }
 .user-card.card div {
   display: inline-block;
+}
+
+.addbutton {
+  font-size: 14px !important;
+  border-radius: 4px !important;
+  margin-left: 49px !important;
 }

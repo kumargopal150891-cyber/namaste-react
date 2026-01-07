@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 const Header = () => {
   let [btnName, setBtnName] = useState("Login");
   // case 1
@@ -10,6 +11,8 @@ const Header = () => {
   useEffect(() => {
     console.log("use Effect called");
   });
+
+  const { loggedInUser } = useContext(UserContext);
 
   // case 2
   // id empty dependency array is passed
@@ -56,6 +59,7 @@ const Header = () => {
           <li className="nav-item">
             <Link to="/cart">Cart</Link>
           </li>
+
           <li>
             <button
               type="button"
@@ -67,6 +71,7 @@ const Header = () => {
               {btnName}
             </button>
           </li>
+          <li className="nav-item font-bold">{loggedInUser}</li>
         </ul>
       </div>
     </div>

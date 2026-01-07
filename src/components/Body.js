@@ -4,6 +4,10 @@ import Shimmer from "./Shimmer";
 import WhatsOnYourMind from "./WhatsOnYourMind.js";
 import RestaurentChain from "./RestaurentChain.js";
 import useOnlineStatus from "../utils/useOnlineStatus.js";
+import { WithPromotedLAbel } from "./RestaurentCard";
+import { useContext } from "react";
+import UserContext from "../utils/UserContext.js";
+
 const Body = () => {
   // state varible for reactive approch
   const [listOfRestaurent, setListOfRestaurent] = useState([]);
@@ -11,10 +15,15 @@ const Body = () => {
   const [crowselData, setCrowselData] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [topResturentChainData, setTopResturentChaindata] = useState([]);
+  const PromotedRestaurentCard = WithPromotedLAbel(RestaurentCard);
 
   useEffect(() => {
     fetchData();
   }, []);
+
+  const { setUserName, loggedInUser } = useContext(UserContext);
+
+  //
 
   const fetchData = async () => {
     const url =
@@ -32,6 +41,7 @@ const Body = () => {
     );
     setTopResturentChaindata(json?.data?.cards[1]?.card?.card);
   };
+  const m = Math.random();
   // conditional rendering
   const onlineStatus = useOnlineStatus();
   if (onlineStatus === false) {
@@ -55,7 +65,7 @@ const Body = () => {
       </div>
       <div className="search-container  ">
         <div className="filter my-1">
-          <div className="col-12 py-2 d-flex">
+          <div className="col-12 py-2 d-flex justify-center">
             <input
               type="text"
               className="form-control w-25"
@@ -93,6 +103,14 @@ const Body = () => {
             >
               Top Rated Restaurant
             </button>
+            <label className="font-bold mx-5 px-2">User Name:</label>
+            <input
+              className="border-gray border inline "
+              value={loggedInUser}
+              onChange={(event) => {
+                setUserName(event.target.value);
+              }}
+            ></input>
           </div>
         </div>
       </div>
@@ -101,9 +119,18 @@ const Body = () => {
           <h5>Restaurants with online food delivery in Haridwar</h5>
         </div>
 
-        {filterdRestaurent.map((restaurent) => (
-          <RestaurentCard key={restaurent.info.id} resData={restaurent} />
-        ))}
+        {/* if restaurent is promoted add promoted label to card */}
+
+        {filterdRestaurent.map((restaurent) =>
+          Math.random() >= 0.5 ? (
+            <RestaurentCard key={restaurent.info.id} resData={restaurent} />
+          ) : (
+            <PromotedRestaurentCard
+              key={restaurent.info.id}
+              resData={restaurent}
+            />
+          )
+        )}
       </div>
     </div>
   );
