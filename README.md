@@ -49,3 +49,12 @@
   - normal js utility function written by Facebook developer written in react
   - useState create reactive varible, state variable
     -useEffect
+
+    # Redux
+
+    - install @Reduxjs/toolkkit and react-redux
+    - build of our store
+    - connect our store to app
+    - create a cart slice
+    - dispatch action
+    - Read data using selector

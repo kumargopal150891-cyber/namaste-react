@@ -3,6 +3,7 @@ import { LOGO_URL } from "../utils/constant";
 import { Link } from "react-router";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 const Header = () => {
   let [btnName, setBtnName] = useState("Login");
   // case 1
@@ -17,6 +18,9 @@ const Header = () => {
   // case 2
   // id empty dependency array is passed
   // it will be called for only first render of componnet
+
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log(cartItems);
 
   useEffect(() => {
     console.log("empty array passed in dependency array of use Effect");
@@ -57,7 +61,9 @@ const Header = () => {
             <Link to="/groccery">Groccery</Link>
           </li>
           <li className="nav-item">
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart" className="font-bold">
+              Cart ({cartItems.length} items)
+            </Link>
           </li>
 
           <li>
